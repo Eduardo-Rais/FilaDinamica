@@ -1,4 +1,6 @@
-public class FilaDinamica<T> implements QueueADT<No>{
+package filas.dinamicas;
+
+public class FilaDinamica<T> implements QueueADT<T>{
     private No comeco;
     private No fim;
     private int tamanho;
@@ -10,7 +12,7 @@ public class FilaDinamica<T> implements QueueADT<No>{
     }
 
     @Override
-    public boolean enqueue(No item) {
+    public boolean enqueue(T item) {
         No novo = new No(item);
         if(this.fim == null) {
             this.comeco = this.fim = novo;
@@ -23,9 +25,9 @@ public class FilaDinamica<T> implements QueueADT<No>{
     }
 
     @Override
-    public No dequeue() {
+    public T dequeue() {
         if(this.comeco == null){return null;}
-        No atendido = this.comeco;
+        T atendido = (T) this.comeco.getElemento();
         this.comeco = this.comeco.getProximo();
         if(this.comeco == null) {this.fim = null;}
         this.tamanho--;
@@ -34,13 +36,13 @@ public class FilaDinamica<T> implements QueueADT<No>{
 
 
     @Override
-    public No front() {
-        return (this.comeco == null) ? null : this.comeco;
+    public T front() {
+        return (this.comeco == null) ? null : (T)this.comeco.getElemento();
     }
 
     @Override
-    public No rear() {
-        return (this.fim == null) ? null : this.fim;
+    public T rear() {
+        return (this.fim == null) ? null : (T)this.fim.getElemento();
     }
 
     @Override
@@ -63,7 +65,7 @@ public class FilaDinamica<T> implements QueueADT<No>{
     @Override
     public int search(T item){
         int posicao = 1;
-        for(No atual = this.comeco; atual != null; atual = atual.getProximo()){
+        for(No<T> atual = this.comeco; atual != null; atual = atual.getProximo()){
             if(atual.getElemento().equals(item)){
                 return posicao;
             }

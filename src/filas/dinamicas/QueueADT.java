@@ -1,3 +1,5 @@
+package filas.dinamicas;
+
 public interface QueueADT<T> {
     boolean enqueue(T item);  // insere no fim
     T dequeue();              // remove e retorna o início (null se vazia)
@@ -6,6 +8,6 @@ public interface QueueADT<T> {
     boolean isEmpty();        // true se não há elementos
     int size();               // quantidade de elementos
     void clear();             // remove todos os elementos
-    int search(T item);       // posição a partir do início (1 = início) ou -1
+    int search(T item);
     String toString();        // representação do início para o fim
 }
